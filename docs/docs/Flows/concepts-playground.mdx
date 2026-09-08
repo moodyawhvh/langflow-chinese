@@ -1,5 +1,5 @@
 ---
-title: Test flows in the Playground
+title: 在 Playground 中测试 Flow
 slug: /concepts-playground
 ---
 
@@ -7,109 +7,111 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Icon from "@site/src/components/icon";
 
-Langflow's **Playground** is a dynamic interface you can use to test your LLM-based flows in real-time.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
 
-You can test how a flow responds to different inputs, review and modify memories, and monitor flow output and logic.
-For example, you can make sure agent flows use the appropriate tools to respond to different inputs.
+Langflow 的 **Playground** 是一个动态界面,可用于实时测试基于 LLM 的 flow。
 
-The **Playground** allows you to quickly iterate over your flow's logic and behavior, making it easier to prototype and refine your applications.
+你可以测试 flow 对不同输入的响应、查看和修改记忆、监控 flow 的输出与逻辑。
+例如,你可以确认代理 flow 会针对不同输入调用合适的工具。
 
-## Run a flow in the Playground
+**Playground** 让你能快速迭代 flow 的逻辑与行为,更轻松地对应用做原型和打磨。
 
-To run a flow in the **Playground**, open the flow, and then click <Icon name="Play" aria-hidden="true"/> **Playground**.
-Then, if your flow has a [**Chat Input** component](/chat-input-and-output), enter a prompt or [use voice mode](/concepts-voice-mode) to trigger the flow and start a chat session.
+## 在 Playground 中运行 Flow
 
-To expand the **Playground** view, click <Icon name="Expand" aria-hidden="true"/> **Enter fullscreen** within the **Playground** panel.
+要在 **Playground** 中运行 flow,先打开该 flow,然后点击 <Icon name="Play" aria-hidden="true"/> **Playground**。
+如果 flow 中有 [**Chat Input** 组件](/chat-input-and-output),输入提示词或[使用语音模式](/concepts-voice-mode)即可触发 flow 并开启聊天会话。
 
-![The Langflow visual builder with the Playground active](/img/playground.png)
+要放大 **Playground** 视图,点击 **Playground** 面板中的 <Icon name="Expand" aria-hidden="true"/> **Enter fullscreen**。
+
+![Playground 激活状态下的 Langflow 可视化编辑器](/img/playground.png)
 
 :::tip
-If there is no message input field in the **Playground**, make sure your flow has a **Chat Input** component that is connected, directly or indirectly, to the **Input** port of a **Language Model** or **Agent** component.
+如果 **Playground** 中没有消息输入框,请确认 flow 里有 **Chat Input** 组件,且它直接或间接连接到 **Language Model** 或 **Agent** 组件的 **Input** 端口。
 
-Because the **Playground** is designed for flows that use an LLM in a query-and-response format, such as chatbots and agents, a flow must have **Chat Input**, **Language Model**/**Agent**, and **Chat Output** components to be fully supported by the **Playground** chat interface
+**Playground** 面向以问答形式使用 LLM 的 flow(如聊天机器人和代理)设计,因此 flow 必须包含 **Chat Input**、**Language Model**/**Agent** 和 **Chat Output** 组件,才能被 **Playground** 聊天界面完整支持。
 
-For flows that require another type of input, such as a webhook event, file upload, or text input, you can [use the Langflow API to trigger the flow](/api-flows-run), and then open the **Playground** to review the LLM activity for the flow run, if applicable.
+对于需要其他输入类型的 flow,例如 webhook 事件、文件上传或文本输入,你可以[用 Langflow API 触发 flow](/api-flows-run),之后再打开 **Playground** 查看该次运行的 LLM 活动(如适用)。
 :::
 
-![Playground window](/img/playground.png)
+![Playground 窗口](/img/playground.png)
 
-For technical details about how the **Playground** works, see [Monitor endpoints](/api-monitor).
+关于 **Playground** 工作原理的技术细节,参见 [Monitor 端点](/api-monitor)。
 
-### Review agent logic
+### 查看代理逻辑
 
-If your flow has an **Agent** component, the **Playground** prints the tools used by the agent and the output from each tool.
-This helps you monitor the agent's tool use and understand the logic behind the agent's responses.
-For example, the following agent used a connected `fetch_content` tool to perform a web search:
+如果 flow 中有 **Agent** 组件,**Playground** 会打印代理使用的工具和每个工具的输出。
+这有助于你监控代理的工具使用,理解代理响应背后的逻辑。
+例如,下面的代理使用了已连接的 `fetch_content` 工具执行网络搜索:
 
-![Playground with agent response](/img/playground-with-agent.png)
+![Playground 中的代理响应](/img/playground-with-agent.png)
 
-### Respond to Human-in-the-Loop prompts
+### 响应 Human-in-the-Loop 提示
 
-When a flow pauses for human approval from a [**Human Input** component](./human-input) or an [**Agent**](./agents), the **Playground** prompts you to approve or reject the tool call.
+当 flow 因 [**Human Input** 组件](./human-input)或 [**Agent**](./agents) 暂停等待人工批准时,**Playground** 会提示你批准或拒绝该工具调用。
 
-Select an action to resume the run from where it was paused.
+选择一个动作即可从暂停处恢复运行。
 
-For more information, see [Human-in-the-Loop](./human-in-the-loop).
+更多信息参见 [Human-in-the-Loop](./human-in-the-loop)。
 
-### View chat history {#view-chat-history}
+### 查看聊天历史 {#view-chat-history}
 
-In the **Playground**, you can view message logs for each of your flow's chat sessions, including timestamps, content, and senders.
+在 **Playground** 中,你可以查看 flow 各聊天会话的消息日志,包括时间戳、内容和发送者。
 
-In the **Playground** sidebar, find the chat session you want to review, click <Icon name="Ellipsis" aria-hidden="true"/> **Options**, and then select **Message Logs**.
+在 **Playground** 侧边栏中找到想查看的聊天会话,点击 <Icon name="Ellipsis" aria-hidden="true"/> **Options**,然后选择 **Message Logs**。
 
-![Playground logs](/img/messages-logs.png)
+![Playground 日志](/img/messages-logs.png)
 
-Message logs break apart the [`Message` data](/data-types#message) for each chat message.
-Click any cell in the message logs to view the full contents of that cell.
+消息日志会把每条聊天消息的 [`Message` 数据](/data-types#message)拆解展示。
+点击消息日志中的任意单元格,可查看该单元格的完整内容。
 
-### Modify memories in the Playground
+### 在 Playground 中修改记忆
 
-To help debug and test your flows, you can edit or delete individual messages in [message logs](#view-chat-history).
-For example, you might want to delete messages that you sent while testing a component that is no longer part of your flow.
+为了方便调试和测试 flow,你可以在[消息日志](#view-chat-history)中编辑或删除单条消息。
+例如,你可能想删除测试某个已从 flow 中移除的组件时发出的消息。
 
-You can also delete entire chat sessions from the sidebar: click <Icon name="Ellipsis" aria-hidden="true"/> **Options**, and then select **Delete**.
+你也可以从侧边栏删除整个聊天会话:点击 <Icon name="Ellipsis" aria-hidden="true"/> **Options**,然后选择 **Delete**。
 
-Modifying memories influences the behavior of the chatbot responses if you continue the chat session or if you preserve memories over multiple chat sessions.
+如果你继续该聊天会话,或跨多个会话保留记忆,修改记忆会影响聊天机器人的响应行为。
 
-**Editing message logs edits Langflow's internal `messages` table, which is the default chat memory storage.**
-For more information about managing sessions and chat memory in Langflow, see [Use custom session IDs](#session-ids) and [Memory management options](/memory).
+**编辑消息日志会直接修改 Langflow 内部的 `messages` 表,即默认的聊天记忆存储。**
+关于在 Langflow 中管理会话和聊天记忆的更多信息,参见[使用自定义会话 ID](#session-ids)和[内存管理选项](/memory)。
 
-## Set custom session IDs {#session-ids}
+## 设置自定义会话 ID {#session-ids}
 
-Chat sessions are identified by session ID (`session_id`), which is a unique identifier for a flow run.
+聊天会话由会话 ID(`session_id`)标识,它是每次 flow 运行的唯一标识符。
 
-The default session ID is the flow ID, which means that all chat messages for a flow are stored under the same session ID as one enormous chat session.
+默认会话 ID 是 flow ID,这意味着一个 flow 的所有聊天消息都存在同一个会话 ID 下,形成一个超大的聊天会话。
 
-If you need to preserve chat context over multiple flow runs or differentiate chat sessions when debugging flows, you can set a custom `session_id`.
+如果需要跨多次 flow 运行保留聊天上下文,或在调试 flow 时区分不同聊天会话,可以设置自定义 `session_id`。
 
-Custom session IDs are helpful for multiple reasons:
+自定义会话 ID 的用处:
 
-* Separate chat sessions in situations where one flow has multiple chat sessions, such as a chatbot that can have multiple simultaneous user interactions.
-* Preserve memory when continuing a chat session across multiple flow runs or when passing context from one flow to another.
-* Differentiate activity from multiple users within the same flow.
-* Identify your own chat sessions when debugging and testing flows.
+* 当一个 flow 存在多个聊天会话时(例如聊天机器人同时服务多个用户),分离各聊天会话。
+* 跨多次 flow 运行继续聊天,或在 flow 之间传递上下文时保留记忆。
+* 区分同一 flow 中多个用户的活动。
+* 调试和测试 flow 时识别自己的聊天会话。
 
-You can set custom session IDs in the visual editor and programmatically.
+你可以在可视化编辑器中或以编程方式设置自定义会话 ID。
 
 <Tabs>
-<TabItem value="visual" label="Visual editor" default>
+<TabItem value="visual" label="可视化编辑器" default>
 
-In your [input and output components](/chat-input-and-output), use the **Session ID** field:
+在你的[输入输出组件](/chat-input-and-output)中使用 **Session ID** 字段:
 
-1. Click the component where you want to set a custom session ID.
-2. In the [component inspection panel](/concepts-components#component-menus), enable **Session ID**.
-3. Click **Close**.
-4. Enter a custom session ID.
-If the field is empty, the flow uses the default session ID.
-5. Open the **Playground** to start a chat under your custom session ID.
+1. 点击要设置自定义会话 ID 的组件。
+2. 在[组件检查面板](/concepts-components#component-menus)中,启用 **Session ID**。
+3. 点击 **Close**。
+4. 输入自定义会话 ID。
+   如果该字段为空,flow 使用默认会话 ID。
+5. 打开 **Playground**,即可在你的自定义会话 ID 下开始聊天。
 
-Make sure to change the **Session ID** when you want to start a new chat session or continue an earlier chat session with a different session ID.
+想开始新的聊天会话、或以不同会话 ID 继续早前会话时,记得修改 **Session ID**。
 
 </TabItem>
 <TabItem value="api" label="Langflow API">
 
-When you trigger a flow with the Langflow API, include the `session_id` parameter in the request payload.
-For example:
+使用 Langflow API 触发 flow 时,在请求 payload 中带上 `session_id` 参数。
+例如:
 
 ```bash
 curl -X POST "http://$LANGFLOW_SERVER_ADDRESS/api/v1/run/$FLOW_ID" \
@@ -123,47 +125,47 @@ curl -X POST "http://$LANGFLOW_SERVER_ADDRESS/api/v1/run/$FLOW_ID" \
 }'
 ```
 
-This command starts a new chat sessions with the specified `session_id` or it retrieves an existing session with that ID, if one exists.
+该命令会以指定的 `session_id` 开启新聊天会话;若已有同 ID 会话,则获取该会话。
 
 </TabItem>
 </Tabs>
 
 :::tip
-In a production environment, consider using a variable for the session ID rather than a hardcoded value.
+生产环境中,建议会话 ID 使用变量而不是硬编码值。
 
-For example, if you want to preserve context for authenticated users, user ID could be a useful variable for the session ID.
-Alternatively, if you want every chat to be unique, you might want to automatically generate a UUID for each session ID.
+例如,要为已认证用户保留上下文,用户 ID 就是会话 ID 的理想变量。
+如果希望每次聊天都唯一,可以为每个会话 ID 自动生成 UUID。
 :::
 
-For more information, see [Use session ID to manage communication between components](/session-id).
+更多信息参见[使用会话 ID 管理组件间通信](/session-id)。
 
-## Share a flow's Playground
+## 分享 Flow 的 Playground
 
 :::warning
-The **Shareable Playground** is for testing purposes only.
-The **Playground** isn't meant for embedding flows in applications. For information about running flows in applications or websites, see [Trigger flows with the Langflow API](/concepts-publish).
+**Shareable Playground** 仅用于测试。
+**Playground** 不是用来把 flow 嵌入应用的。关于在应用或网站中运行 flow,参见[用 Langflow API 触发 flow](/concepts-publish)。
 
-The **Shareable Playground** isn't available in Langflow Desktop.
+**Shareable Playground** 在 Langflow Desktop 上不可用。
 :::
 
-The **Shareable Playground** option exposes the **Playground** for a single flow at the `/public_flow/$FLOW_ID` endpoint.
+**Shareable Playground** 选项会把单个 flow 的 **Playground** 暴露在 `/public_flow/$FLOW_ID` 端点。
 
-After you [deploy a public Langflow server](/deployment-overview), you can share this public URL with another user to allow them to access the specified flow's **Playground** only.
-The user can interact with the flow's chat input and output and view the results without installing Langflow or generating a Langflow API key.
+[部署公网 Langflow 服务器](/deployment-overview)后,你可以把这个公开 URL 分享给其他用户,让他们只能访问指定 flow 的 **Playground**。
+对方无需安装 Langflow,也无需生成 Langflow API key,即可与 flow 的聊天输入输出交互并查看结果。
 
-To share a flow's **Playground** with another user, do the following:
+与其他用户分享 flow 的 **Playground**:
 
-1. In Langflow, open the flow you want share.
-2. In the [workspace](/concepts-overview#workspace), click **Share**, and then enable **Shareable Playground**.
-3. Click **Shareable Playground** again to open the **Playground** window.
-This window's URL is the flow's **Shareable Playground** address, such as `https://3f7c-73-64-93-151.ngrok-free.app/playground/d764c4b8-5cec-4c0f-9de0-4b419b11901a`.
-4. Send the URL to another user to give them access to the flow's **Playground**.
+1. 在 Langflow 中打开要分享的 flow。
+2. 在[工作区](/concepts-overview#workspace)中点击 **Share**,然后启用 **Shareable Playground**。
+3. 再次点击 **Shareable Playground**,打开 **Playground** 窗口。
+   该窗口的 URL 就是 flow 的 **Shareable Playground** 地址,例如 `https://3f7c-73-64-93-151.ngrok-free.app/playground/d764c4b8-5cec-4c0f-9de0-4b419b11901a`。
+4. 把 URL 发给其他用户,他们即可访问该 flow 的 **Playground**。
 
-By default, a shared **Playground** can't run a flow that contains a custom component, because the run is unauthenticated and Langflow executes only its own copy of each component on that path. To run one anyway, install the component on the server with `LANGFLOW_COMPONENTS_PATH`. For more information, see [Custom components in publicly shared flows](/deployment-block-custom-components#public-flow-custom-components).
+默认情况下,共享的 **Playground** 无法运行包含自定义组件的 flow,因为该运行未经认证,Langflow 只会执行该路径下它自己副本中的组件。确需运行,可在服务器上通过 `LANGFLOW_COMPONENTS_PATH` 安装该组件。更多信息参见[公开分享 flow 中的自定义组件](/deployment-block-custom-components#public-flow-custom-components)。
 
-## See also
+## 另请参阅
 
-- [Upload images](/concepts-file-management#upload-images)
-- [Use voice mode](/concepts-voice-mode)
-- [Trigger flows with the Langflow API](/concepts-publish)
-- [Session ID](/session-id)
+- [上传图片](/concepts-file-management#upload-images)
+- [使用语音模式](/concepts-voice-mode)
+- [用 Langflow API 触发 flow](/concepts-publish)
+- [会话 ID](/session-id)

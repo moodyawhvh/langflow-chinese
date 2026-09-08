@@ -1,56 +1,58 @@
 ---
-title: Contribute templates
+title: 贡献模板
 slug: /contributing-templates
 ---
 
 import Icon from "@site/src/components/icon";
 
-Follow these best practices when submitting a template to Langflow.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
 
-For template formatting examples, see [`/starter_projects`](https://github.com/langflow-ai/langflow/tree/main/src/backend/base/langflow/initial_setup/starter_projects) in the Langflow repository.
+向 Langflow 提交模板时,请遵循以下最佳实践。
 
-## Create a PR to submit your template
+模板格式示例请参见 Langflow 仓库中的 [`/starter_projects`](https://github.com/langflow-ai/langflow/tree/main/src/backend/base/langflow/initial_setup/starter_projects)。
 
-Follow these steps to submit your template:
+## 通过 PR 提交你的模板
 
-1. Fork the [Langflow repository](https://github.com/langflow-ai/langflow) on GitHub.
-2. On your fork, add your `template.json` file to `/starter_projects`.
-3. Include the [required items for template submission](#required-items-for-template-submission).
-4. Create a Pull Request (PR) from your fork to the main Langflow repository.
-5. Include a screenshot of your template in the PR.
+按以下步骤提交模板:
 
-The Langflow team will review your PR, offer feedback, and, if approved, merge the template.
+1. 在 GitHub 上 Fork [Langflow 仓库](https://github.com/langflow-ai/langflow)。
+2. 在你的 fork 中,把 `template.json` 文件加入 `/starter_projects`。
+3. 补齐[模板提交必备项](#required-items-for-template-submission)。
+4. 从你的 fork 向 Langflow 主仓库发起 Pull Request(PR)。
+5. 在 PR 中附上模板的截图。
 
-## Required items for template submission
+Langflow 团队会评审你的 PR、给出反馈,批准后合并该模板。
 
-Include the following items and follow these guidelines when submitting your template.
+## 模板提交必备项
 
-### Name
+提交模板时,请包含以下内容并遵循以下准则。
 
-The template name must be concise and contain no more than three words.
-Capitalize only the first letter of each word.
-For example: **Blog Writer** or **Travel Planning Agent**.
+### 名称
 
-### Description
+模板名称必须简洁,不超过三个单词。
+仅首字母大写。
+例如:**Blog Writer** 或 **Travel Planning Agent**。
 
-A brief, informative description that is shown in the visual editor to help users understand the template's purpose and use cases.
-For example:
+### 描述
+
+提供简明、信息充分的描述,显示在可视化编辑器中,帮助用户理解模板的用途和适用场景。
+例如:
 
 ```json
    "description": "Auto-generate a customized blog post from instructions and referenced articles.",
 ```
 
-### Icons
+### 图标
 
-Use icons from the [Lucide](https://lucide.dev/icons/) icon library.
+使用 [Lucide](https://lucide.dev/icons/) 图标库中的图标。
 
 ### Flow
 
-Use only <Icon name="Component" aria-hidden="true" /> **Core components** and <Icon name="Blocks" aria-hidden="true" /> **Bundles**.
-Don't use custom components that aren't part of the Langflow codebase.
+只使用 <Icon name="Component" aria-hidden="true" /> **Core components** 和 <Icon name="Blocks" aria-hidden="true" /> **Bundles**。
+不要使用不属于 Langflow 代码库的自定义组件。
 
-Include brief README, quickstart, or other essential details in a <Icon name="StickyNote" aria-hidden="true"/> **Note**. Notes accept Markdown syntax.
-For example:
+在 <Icon name="StickyNote" aria-hidden="true"/> **Note** 中写明简要 README、快速上手或其他关键信息。Note 支持 Markdown 语法。
+例如:
 
 ```text
 # Financial Assistant Agents
@@ -72,20 +74,21 @@ The Financial Assistant Agent retrieves web content and writes reports about fin
 5. Click the **Playground** and ask `Why did Nvidia stock drop in January?`
 ```
 
-### Format
+### 格式
 
-Submit the template in JSON format.
+以 JSON 格式提交模板。
 
-### Tags
-Assign the template to one of the following categories:
+### 标签
 
-- Assistants
-- Classification
-- Coding
-- Content Generation
-- Q&A
-- Prompting
+为模板指定以下类别之一:
+
+- Assistants(助手)
+- Classification(分类)
+- Coding(编程)
+- Content Generation(内容生成)
+- Q&A(问答)
+- Prompting(提示工程)
 - RAG
-- Agents
+- Agents(代理)
 
-For more information, see the Langflow repository's [template categories](https://github.com/langflow-ai/langflow/blob/main/src/frontend/src/modals/templatesModal/index.tsx#L27-L57).
+更多信息参见 Langflow 仓库的[模板类别](https://github.com/langflow-ai/langflow/blob/main/src/frontend/src/modals/templatesModal/index.tsx#L27-L57)。
