@@ -1,33 +1,35 @@
-# How to contribute to Langflow
+# 如何为 Langflow 做贡献
 
-Thank you for your interest in contributing!
+感谢你有兴趣参与贡献！
 
-## How to Contribute
+## 如何贡献
 
-1. Fork the [Langflow GitHub repository](https://github.com/langflow-ai/langflow).
-2. Create a new branch for your changes.
-3. Open a GitHub pull request against the active `release-X.Y.Z` release candidate branch.
-Do not target `main`.
-For example, if the latest released version is `1.8.0`, your pull request should target the `release-1.9.0` branch.
-Include a clear title and description.
-Reference any issues fixed, for example `Fixes #1234`.
-Ensure your PR title follows [semantic commit conventions](https://www.conventionalcommits.org/).
-4. A maintainer will review your PR and may request changes.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译，英文原版见原项目。
 
-## Development Environment Setup
+1. Fork [Langflow GitHub 仓库](https://github.com/langflow-ai/langflow)。
+2. 为你的改动创建一个新分支。
+3. 向当前活跃的 `release-X.Y.Z` 候选发布分支提交 GitHub Pull Request。
+   不要以 `main` 为目标分支。
+   例如，如果最新发布版本是 `1.8.0`，你的 PR 应以 `release-1.9.0` 分支为目标。
+   请附上清晰的标题和描述。
+   引用你修复的相关 issue，例如 `Fixes #1234`。
+   确保你的 PR 标题遵循[语义化提交规范](https://www.conventionalcommits.org/)。
+4. 维护者会评审你的 PR，并可能要求修改。
 
-For detailed instructions on setting up your local development environment, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+## 开发环境搭建
 
-## Documentation Contributions
+关于搭建本地开发环境的详细说明，请参阅 [DEVELOPMENT.md](./DEVELOPMENT.md)。
 
-Langflow documentation is built with [Docusaurus](https://docusaurus.io/).
-For setup instructions, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+## 文档贡献
 
-## Additional Guides
+Langflow 文档使用 [Docusaurus](https://docusaurus.io/) 构建。
+搭建说明请参见 [DEVELOPMENT.md](./DEVELOPMENT.md)。
 
-- [Contribute Bundles](./docs/docs/Contributing/contributing-bundles.mdx)
-- [Contribute Components](./docs/docs/Contributing/contributing-components.mdx)
-- [Contribute Tests](./docs/docs/Contributing/contributing-component-tests.mdx)
-- [Contribute Templates](./docs/docs/Contributing/contributing-templates.mdx)
+## 更多指南
 
-Thank you for helping improve Langflow!
+- [贡献 Bundle](./docs/docs/Contributing/contributing-bundles.mdx)
+- [贡献组件](./docs/docs/Contributing/contributing-components.mdx)
+- [贡献测试](./docs/docs/Contributing/contributing-component-tests.mdx)
+- [贡献模板](./docs/docs/Contributing/contributing-templates.mdx)
+
+感谢你帮助改进 Langflow！
