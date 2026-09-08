@@ -1,25 +1,29 @@
-# Setting up a Development Environment
+# 搭建开发环境
 
-This document details how to set up a local development environment that will allow you to contribute changes to the project!
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
+>
+> 📝 原文较长,本页为中文核心章节翻译;命令与输出示例保持原样。
 
-## Base Requirements
+本文档详细介绍如何搭建本地开发环境,让你能够为项目贡献改动!
 
-- The project is hosted on GitHub, so you need an account there (and if you are reading this, you likely do!)
-- An IDE such as Microsoft VS Code IDE https://code.visualstudio.com/
+## 基础要求
 
-## Set up Git Repository Fork
+- 项目托管在 GitHub 上,所以你需要一个 GitHub 账号(能读到这份文档,你多半已经有了!)
+- 一个 IDE,例如 Microsoft VS Code:https://code.visualstudio.com/
 
-You will push changes to a fork of the Langflow repository, and from there create a Pull Request into the project repository.
+## 设置 Git 仓库 Fork
 
-Fork the [Langflow GitHub repository](https://github.com/langflow-ai/langflow/fork), and follow the instructions to create a new fork.
+你需要把改动推送到 Langflow 仓库的 fork,再从那里向项目仓库发起 Pull Request。
 
-On your new fork, click the "<> Code" button to get a URL to [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) using your preferred method, and clone the repository; for example using `https`:
+Fork [Langflow GitHub 仓库](https://github.com/langflow-ai/langflow/fork),按提示创建新 fork。
+
+在你的新 fork 上,点击 "<> Code" 按钮,获取 [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) 地址,用你喜欢的方式克隆仓库;例如用 `https`:
 
 ```bash
 git clone https://github.com/<your username>/langflow.git
 ```
 
-Finally, add the Project repository as `upstream`:
+最后,把项目仓库添加为 `upstream`:
 
 ```bash
 cd langflow
@@ -27,121 +31,122 @@ git remote add upstream https://github.com/langflow-ai/langflow.git
 git remote set-url --push upstream no_push
 ```
 
-> [!TIP] > **Windows/WSL Users**: You may find that files "change", specifically the file mode e.g. "changed file mode 100755 → 100644". You can workaround this problem with `git config core.filemode false`.
+> [!TIP]
+> **Windows/WSL 用户**:你可能发现文件"变了",尤其是文件权限位,例如 "changed file mode 100755 → 100644"。可以用 `git config core.filemode false` 规避这个问题。
 
-## Set up Environment
+## 设置环境
 
-There are two options available to you: use your local environment with `make` commands (recommended for macOS and Linux), or use a Development Container ("[Dev Container](https://containers.dev/)") which is recommended for Windows users.
+有两种选择:用 `make` 命令使用本地环境(macOS 和 Linux 推荐),或使用开发容器("[Dev Container](https://containers.dev/)")(Windows 用户推荐)。
 
-### Option 1 (Recommended): Use Your Local Environment
+### 选项 1(推荐):使用本地环境
 
-Install Pre-Requisites:
+安装前置依赖:
 
-- **Operating System**: macOS or Linux; Windows users should use WSL or consider Option 2 (Dev Container).
-- **`git`**: The project uses the ubiquitous `git` tool for change control.
-- **`make`**: The project uses `make` to coordinate packaging.
-- **`uv`**: This project uses `uv` (`>=0.4`), a Python package and project manager from Astral. Install instructions at https://docs.astral.sh/uv/getting-started/installation/.
-- **`npm`**: The frontend files are built with Node.js (`v22.12 LTS`) and `npm` (`v10.9`). Install instructions at https://nodejs.org/en/download/package-manager.
-  - Windows (WSL) users: ensure `npm` is installed within WSL environment; `which npm` should resolve to a Linux location, not a Windows location.
+- **操作系统**:macOS 或 Linux;Windows 用户请使用 WSL,或考虑选项 2(Dev Container)。
+- **`git`**:项目使用通用的 `git` 做版本控制。
+- **`make`**:项目使用 `make` 协调打包。
+- **`uv`**:本项目使用 Astral 的 Python 包与项目管理器 `uv`(`>=0.4`)。安装说明见 https://docs.astral.sh/uv/getting-started/installation/。
+- **`npm`**:前端使用 Node.js(`v22.12 LTS`)和 `npm`(`v10.9`)构建。安装说明见 https://nodejs.org/en/download/package-manager。
+  - Windows(WSL)用户:确保 `npm` 安装在 WSL 环境内;`which npm` 应指向 Linux 路径而不是 Windows 路径。
 
-### Option 2: Use a Dev Container (Recommended for Windows)
+### 选项 2:使用 Dev Container(Windows 推荐)
 
-Open this repository as a Dev Container per your IDEs instructions.
+按你的 IDE 的说明,把本仓库作为 Dev Container 打开。
 
-A preconfigured `.devcontainer` is included in this repository and is auto-detected by supported IDEs.
+仓库内已包含预配置的 `.devcontainer`,支持的 IDE 会自动识别。
 
 #### Microsoft VS Code
 
-To start the preconfigured `.devcontainer` with the VS Code Dev Containers extension, from the Command Palette, run the Dev Containers: Reopen in Container command.
+要启动预配置的 `.devcontainer`,请安装 VS Code Dev Containers 扩展,然后在命令面板运行 Dev Containers: Reopen in Container 命令。
 
-- See [Developing inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)
-- You may also find it helpful to [share `git` credentials](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials) with the container
+- 参见 [Developing inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)
+- 你可能还想与容器[共享 `git` 凭据](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials)
 
-### Initial Environment Validation
+### 初始环境验证
 
-To setup and validate the initial environment, run:
+运行以下命令搭建并验证初始环境:
 
 ```bash
 make init
 ```
 
-This sets up the development environment by installing backend and frontend dependencies and installing pre-commit hooks. It runs `make install_backend`, `make install_frontend`, and `uvx pre-commit install`.
+该命令通过安装后端和前端依赖、安装 pre-commit 钩子来搭建开发环境。它会依次执行 `make install_backend`、`make install_frontend` 和 `uvx pre-commit install`。
 
 > [!TIP]
-> If you want to quickly run Langflow from source without setting up the full development environment, you can use `make run_cli` instead. This command installs dependencies, builds the frontend, and starts the application in one step.
+> 如果你想快速从源码跑起 Langflow 而不搭建完整开发环境,可以改用 `make run_cli`。该命令会一步完成依赖安装、前端构建并启动应用。
 
-After running `make init`, you have two options for running Langflow:
+运行 `make init` 后,你有两种运行 Langflow 的方式:
 
-- Use `make run_cli` to build and run the application immediately.
-- Continue to the next section to run Langflow in Development mode.
+- 用 `make run_cli` 立即构建并运行应用。
+- 继续下一节,以开发模式运行 Langflow。
 
-### Troubleshooting frontend build issues
+### 前端构建问题排查
 
-If you encounter frontend build problems or are upgrading from an older version of Langflow, run `make run_clic` once.
+如果遇到前端构建问题,或从旧版本升级而来,先运行一次 `make run_clic`。
 
 ```bash
 make run_clic
 ```
 
-This command cleans the build cache and rebuilds everything from scratch, which resolves most frontend-related issues when switching between versions.
+该命令会清理构建缓存并完全重建,能解决版本切换时的大部分前端问题。
 
-## Complete development environment setup
+## 完整开发环境设置
 
-There are some other steps to consider before you are ready to begin development.
+正式开发前,还有一些步骤值得考虑。
 
-### Optional pre-commit hooks
+### 可选的 pre-commit 钩子
 
-Pre-commit hooks will help keep your changes clean and well-formatted.
+pre-commit 钩子有助于保持你的改动整洁、格式规范。
 
 > [!NOTE]
-> With these installed, the `git commit` command needs to run within the Python environment; your syntax needs to change to `uv run git commit`.
+> 安装这些钩子后,`git commit` 需要在 Python 环境内运行,命令需改为 `uv run git commit`。
 
-Install pre-commit hooks by running the following commands:
+运行以下命令安装 pre-commit 钩子:
 
 ```bash
 uv sync
 uv run pre-commit install
 ```
 
-## Run Langflow in Development mode
+## 以开发模式运行 Langflow
 
-With the above validation, you can now run the backend (FastAPI) and frontend (Node) services in a way that will "hot-reload" your changes. In this mode, the FastAPI server requires a Node.js server to serve the frontend pages rather than serving them directly.
+完成上述验证后,你就可以让后端(FastAPI)和前端(Node)服务以"热重载"方式运行你的改动。在这种模式下,FastAPI 服务器需要一个 Node.js 服务器来提供前端页面,而不是自己直接提供。
 
 > [!NOTE]
-> You will likely have multiple terminal sessions active in the normal development workflow. These will be annotated as _Backend Terminal_, _Frontend Terminal_, _Documentation Terminal_, and _Build Terminal_.
+> 正常开发流程中你会同时开着多个终端会话,下文分别标注为 _Backend Terminal_、_Frontend Terminal_、_Documentation Terminal_ 和 _Build Terminal_。
 
-### Debug Mode
+### 调试模式
 
-A debug configuration is provided for VS Code users: this can be launched from the Debug tab (the backend debug mode can be launched directly via the F5 key). You may prefer to start services in this mode. You may still want to read the following subsections to understand expected console output and service readiness.
+VS Code 用户可以使用现成的调试配置:在 Debug 标签页启动(后端调试模式可直接按 F5 启动)。你可能更喜欢以这种方式启动服务。仍然建议阅读下面的小节,了解预期的控制台输出和服务就绪状态。
 
-### Start the Backend Service
+### 启动后端服务
 
-The backend service runs as a FastAPI service on Python, and is responsible for servicing API requests. In the _Backend Terminal_, start the backend service:
+后端服务以 Python 上的 FastAPI 服务运行,负责处理 API 请求。在 _Backend Terminal_ 中启动后端:
 
 ```bash
 make backend
 ```
 
 > [!TIP]
-> **Component Development Mode**: By default, Langflow uses a prebuilt component index for fast startup (~10ms). If you're actively developing or modifying components, enable dynamic component loading with `LFX_DEV`:
+> **组件开发模式**:默认情况下,Langflow 使用预构建的组件索引以实现快速启动(约 10ms)。如果你正在开发或修改组件,请用 `LFX_DEV` 启用动态组件加载:
 >
 > ```bash
-> # Load all components dynamically
+> # 动态加载全部组件
 > LFX_DEV=1 make backend
 >
-> # Load only specific component modules (faster dev workflow)
+> # 只加载指定的组件模块(开发工作流更快)
 > LFX_DEV=mistral,openai,anthropic make backend
 > ```
 >
-> The list mode is particularly useful when working on specific integrations, as it significantly speeds up startup time by only loading the components you need.
+> 列表模式在开发特定集成时尤其有用,只加载所需组件能显著加快启动时间。
 >
-> Without `LFX_DEV`, component changes require rebuilding the index:
+> 不带 `LFX_DEV` 时,组件改动需要重建索引:
 >
 > ```bash
 > uv run python scripts/build_component_index.py
 > ```
 
-You will get output similar to:
+你会看到类似如下输出:
 
 ```
 INFO:     Will watch for changes in these directories: ['/home/phil/git/langflow']
@@ -151,21 +156,21 @@ INFO:     Started reloader process [22330] using WatchFiles
 Starting Langflow ...
 ```
 
-At which point you can check http://localhost:7860/health in a browser; when the backend service is ready it will return a document like:
+此时可在浏览器中访问 http://localhost:7860/health;后端服务就绪后会返回类似文档:
 
 ```json
 { "status": "ok" }
 ```
 
-### Start the Frontend Service
+### 启动前端服务
 
-The frontend (User Interface) is, in shipped code (i.e. via `langflow run`), statically-compiled files that the backend FastAPI service provides to clients via port `7860`. In development mode, these are served by a Node.js service on port `3000`. In the _Frontend Terminal_, start the frontend service:
+前端(用户界面)在发行代码中(即 `langflow run`)是静态编译文件,由后端 FastAPI 服务通过端口 `7860` 提供给客户端。开发模式下,这些文件由运行在端口 `3000` 的 Node.js 服务提供。在 _Frontend Terminal_ 中启动前端服务:
 
 ```bash
 make frontend
 ```
 
-You will get output similar to:
+你会看到类似如下输出:
 
 ```
   VITE v5.4.11  ready in 552 ms
@@ -175,16 +180,16 @@ You will get output similar to:
   ➜  press h + enter to show help
 ```
 
-At this point, you can navigate to http://localhost:3000/ in a browser and access the Langflow User Interface.
+此时可在浏览器中访问 http://localhost:3000/ 进入 Langflow 用户界面。
 
-### Build and display documentation
+### 构建并查看文档
 
 > [!IMPORTANT]
-> If you're using a dev container, run the documentation build from outside the container in your host terminal, not from within the dev container workspace. The documentation build may not work properly when run inside the dev container.
+> 如果你使用的是 dev container,请在容器外的宿主终端构建文档,不要在 dev container 工作区内运行。文档构建在容器内可能无法正常工作。
 
-If you are contributing changes to documentation (always welcome!), these are built using [Docusaurus](https://docusaurus.io/) and served separately, also using Node.js.
+如果你要为文档贡献改动(永远欢迎!),文档使用 [Docusaurus](https://docusaurus.io/) 构建,同样基于 Node.js 独立提供服务。
 
-In the terminal, from the project root directory, run the following:
+在终端中,于项目根目录运行:
 
 ```bash
 cd docs
@@ -192,87 +197,87 @@ npm install
 npm run start
 ```
 
-If the frontend service is running on port `3000` you might be prompted `Would you like to run the app on another port instead?`, in which case answer "yes". You will get output similar to:
+如果前端服务已占用端口 `3000`,系统会提示 `Would you like to run the app on another port instead?`,回答"yes"即可。你会看到类似输出:
 
 ```
 [SUCCESS] Docusaurus website is running at: http://localhost:3001/
 ```
 
-Navigate to http://localhost:3001/ in a browser and view the documentation. Documentation updates will be visible as they are saved, though sometimes the browser page will also need to be refreshed.
+浏览器访问 http://localhost:3001/ 查看文档。文档保存后即可看到更新,不过有时需要手动刷新浏览器页面。
 
-## Adding or Modifying a Component
+## 添加或修改组件
 
-Components reside in folders under `src/backend/base/langflow`, and their unit tests under `src/backend/base/tests/unit/components`.
+组件位于 `src/backend/base/langflow` 下的各个文件夹,单元测试位于 `src/backend/base/tests/unit/components`。
 
 > [!IMPORTANT]
-> **Component Development Mode**: When actively developing components, make sure to run the backend with `LFX_DEV=1` to enable live reloading:
+> **组件开发模式**:积极开发组件时,请务必用 `LFX_DEV=1` 运行后端以启用实时重载:
 >
 > ```bash
 > LFX_DEV=1 make backend
 > ```
 >
-> This ensures your component changes are immediately reflected without needing to rebuild the component index.
+> 这样你的组件改动会立即生效,无需重建组件索引。
 
-### Adding a Component
+### 添加组件
 
-Add the component to the appropriate subdirectory, and add the component to the `__init__.py` file (alphabetical ordering on the `import` and the `__all__` list). Assuming the backend and frontend services are running **with `LFX_DEV=1`**, the backend service will restart as these files are changed. The new component will be visible after the backend is restarted, _*and*_ after you hit "refresh" in the browser.
+把组件添加到合适的子目录,并在 `__init__.py` 中登记(按 `import` 和 `__all__` 列表字母序)。假设后端和前端服务正以 **`LFX_DEV=1`** 运行,这些文件变化时后端服务会自动重启。新组件会在后端重启后、_并且_你在浏览器点击"刷新"后可见。
 
 > [!TIP]
-> It is faster to copy-paste the component code from your editor into the UI _without_ saving in the source code in the editor, and once you are satisfied it is working you can save (restarting the backend) and refresh the browser to confirm it is present.
+> 更快的做法是:先把组件代码从编辑器粘贴到 UI 中试用,_先不_保存源码;确认工作正常后再保存(触发后端重启)并刷新浏览器确认组件已出现。
 
-You should try to add a unit test for your component, though templates and best practices for this is a work in progress. At the very least, please create a Markdown file in the unit test subdirectory associated with your component (create the directory if not present), with the same filename as the component but with a `.md` extension. Within this should be the steps you have taken to manually test the component.
+你应该为组件补充单元测试,不过相关模板和最佳实践仍在完善中。至少请在组件对应的单元测试子目录中创建一个 Markdown 文件(目录不存在就创建),文件名与组件同名、扩展名为 `.md`,内容写明你手动测试该组件的步骤。
 
-### Modifying a Component
+### 修改组件
 
-Modifying a component is much the same as adding a component: it is generally easier to make changes in the UI and then save the file in the repository. Please be sure to review and modify unit tests; if there is not a unit test for the component, the addition of one that at least covers your changes would be much appreciated!
+修改组件与添加组件基本相同:通常先在 UI 里改,再把文件保存回仓库更方便。请务必检查并同步修改单元测试;如果该组件还没有单元测试,能补一个至少覆盖你改动的测试将不胜感激!
 
 > [!NOTE]
-> If you have an old version of the component on the canvas when changes are saved and the backend service restarts, that component should show "Updates Available" when the canvas is reloaded (i.e. a browser refresh). [Issue 5179](https://github.com/langflow-ai/langflow/issues/5179) indicates this behavior is not consistent, at least in a development setting.
+> 如果改动保存、后端服务重启时,画布上还是该组件的旧版本,重新加载画布(即浏览器刷新)后组件应显示 "Updates Available"。[Issue 5179](https://github.com/langflow-ai/langflow/issues/5179) 表明该行为并不总是一致,至少在开发环境下如此。
 
-### Component Index
+### 组件索引
 
-When you're done modifying components and ready to commit, the component index will be automatically updated by CI when you create a pull request. The GitHub Actions workflow will detect changes to components and rebuild the index, committing it to your PR branch if needed.
+组件修改完成、准备提交时,组件索引会在你创建 Pull Request 时由 CI 自动更新。GitHub Actions 工作流会检测组件变更并重建索引,必要时自动提交到你的 PR 分支。
 
-If you want to manually rebuild the index locally for testing:
+如果想在本地手动重建索引用于测试:
 
 ```bash
 uv run python scripts/build_component_index.py
 ```
 
-## Building and Testing Changes
+## 构建与测试改动
 
-When you are ready to commit, and before you commit, you should consider the following:
+准备提交时,提交前建议执行:
 
 - `make lint`
-- `make format_backend` and `make format_frontend` will run code formatters on their respective codebases
-- `make unit_tests` runs the (backend) unit tests (see "Quirks" below for more about testing).
+- `make format_backend` 和 `make format_frontend` 分别对后端、前端代码运行格式化
+- `make unit_tests` 运行(后端)单元测试(测试相关的更多信息见下文"一些怪癖")。
 
-Once these changes are ready, it is helpful to rebase your changes on top of `upstream`'s `main` branch, to ensure you have the latest code version! Of course if you have had to merge changes into your component you may want to re-lint/format/unit_test.
+改动就绪后,建议将你的改动 rebase 到 `upstream` 的 `main` 分支之上,确保拿到的是最新代码!当然,如果你中途合并过他人的改动,可能需要重新 lint/format/unit_test。
 
-As a final validation, stop the backend and frontend services and run `make init`; this will do a clean build and the UI should be available in port `7860` (as it has invoked `langflow run`). Open a **new** browser tab to this service and do a final check of your changes by adding your new/modified component onto the canvas from the Components list.
+作为最终验证,停掉后端和前端服务并运行 `make init`;这会做一次干净构建,UI 应在端口 `7860` 可用(因为内部执行了 `langflow run`)。新开一个**新的**浏览器标签页访问该服务,从 Components 列表中把新增/修改的组件拖到画布上,做最后检查。
 
-## Committing, Pushing, and Pull Requests
+## 提交、推送与 Pull Request
 
-Once you are happy your changes are complete, commit them and push the changes to your own fork (this will be `origin` if you followed the above instructions). You can then raise a Pull Request into the Project repository on the GitHub interface or within your IDE.
+确认改动完成后,提交并推送到你自己的 fork(按上文操作,它就是 `origin`)。然后可以在 GitHub 网页界面或 IDE 中向项目仓库发起 Pull Request。
 
 > [!TIP]
-> Remember that if you have pre-commit hooks enabled, you need to run the `git` command as `uv run git` to activate the necessary Python environment!
+> 记住,如果启用了 pre-commit 钩子,需要以 `uv run git` 的形式运行 `git` 命令来激活所需的 Python 环境!
 
-## Some Quirks!
+## 一些怪癖!
 
-You may observe some quirky things:
+你可能会遇到一些奇怪的现象:
 
-### Testing
+### 测试
 
-- Backend test `src/backend/tests/unit/test_database.py` can fail when running with `make tests` but passes when running manually
-  - You can validate this by running the test cases sequentially: `uv run pytest src/backend/tests/unit/test_database.py`
-- There are some other test targets: `integration_tests`, `coverage`, `tests_frontend` but these require additional setup not covered in this document.
+- 后端测试 `src/backend/tests/unit/test_database.py` 在 `make tests` 下可能失败,但单独手动运行可以通过
+  - 可以按顺序单独运行来验证:`uv run pytest src/backend/tests/unit/test_database.py`
+- 还有其他测试目标:`integration_tests`、`coverage`、`tests_frontend`,但它们需要本文档未覆盖的额外配置。
 
-### Files That Change
+### 会自己变化的文件
 
-There are some files that change without you having made changes:
+有些文件你没改它也会变:
 
-- Files in `src/backend/base/langflow/initial_setup/starter_projects` modify after `langflow run`; these are formatting changes. Feel free to commit (or ignore) them.
-- `uv.lock` and `src/frontend/package-lock.json` files can be modified by `make` targets; changes should not be committed by individual contributors.
-  - You can exclude these from consideration in git: `git update-index --assume-unchanged uv.lock src/frontend/package-lock.json`
-  - You can re-include these from consideration in git: `git update-index --no-assume-unchanged uv.lock src/frontend/package-lock.json`
+- `src/backend/base/langflow/initial_setup/starter_projects` 下的文件在 `langflow run` 后会变;这些只是格式变化。提交或忽略都可以。
+- `uv.lock` 和 `src/frontend/package-lock.json` 可能被 `make` 目标修改;个人贡献者不应提交这些变化。
+  - 可以让 git 忽略它们:`git update-index --assume-unchanged uv.lock src/frontend/package-lock.json`
+  - 需要恢复跟踪时:`git update-index --no-assume-unchanged uv.lock src/frontend/package-lock.json`
