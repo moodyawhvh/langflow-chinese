@@ -1,5 +1,5 @@
 ---
-title: Quickstart
+title: 快速入门
 slug: /get-started-quickstart
 ---
 
@@ -8,27 +8,31 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import PartialGlobalModelProviders from '@site/docs/_partial-global-model-providers.mdx';
 
-Get started with Langflow by loading a template flow, running it, and then serving it at the `/run` API endpoint.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
+>
+> 📝 原文较长,本页为中文核心章节翻译;示例响应 JSON 与代码块保持原样。
 
-## Prerequisites
+通过加载一个模板 flow、运行它,然后通过 `/run` API 端点对外提供服务,即可快速上手 Langflow。
 
-- [Install and start Langflow](/get-started-installation)
-- Create an [OpenAI API key](https://platform.openai.com/api-keys)
-- Create a [Langflow API key](/api-keys-and-authentication)
+## 前置条件
+
+- [安装并启动 Langflow](/get-started-installation)
+- 创建一个 [OpenAI API key](https://platform.openai.com/api-keys)
+- 创建一个 [Langflow API key](/api-keys-and-authentication)
 
     <details>
-    <summary>Create a Langflow API key</summary>
+    <summary>创建 Langflow API key</summary>
 
-    A Langflow API key is a user-specific token you can use with Langflow.
+    Langflow API key 是一个用户专属的令牌,可在 Langflow 中使用。
 
-    To create a Langflow API key, do the following:
+    创建 Langflow API key 的步骤:
 
-    1. In Langflow, click your user icon, and then select **Settings**.
-    2. Click **Langflow API Keys**, and then click <Icon name="Plus" aria-hidden="true"/> **Add New**.
-    3. Name your key, and then click **Create API Key**.
-    4. Copy the API key and store it securely.
-    5. To use your Langflow API key in a request, set a `LANGFLOW_API_KEY` environment variable in your terminal, and then include an `x-api-key` header or query parameter with your request.
-    For example:
+    1. 在 Langflow 中点击你的用户头像,选择 **Settings**。
+    2. 点击 **Langflow API Keys**,然后点击 <Icon name="Plus" aria-hidden="true"/> **Add New**。
+    3. 为 key 命名,然后点击 **Create API Key**。
+    4. 复制 API key 并妥善保存。
+    5. 要在请求中使用 Langflow API key,请在终端设置 `LANGFLOW_API_KEY` 环境变量,并在请求中附带 `x-api-key` 请求头或查询参数。
+    例如:
 
         ```bash
         # Set variable
@@ -49,71 +53,71 @@ Get started with Langflow by loading a template flow, running it, and then servi
     </details>
 
 :::tip
-If you encounter the error "An API key must be passed as query or header" when attempting to sign up, see [Troubleshooting](/troubleshoot#an-api-key-must-be-passed-as-query-or-header).
+如果注册时遇到报错 "An API key must be passed as query or header",请参见[故障排查](/troubleshoot#an-api-key-must-be-passed-as-query-or-header)。
 :::
 
-## Run the Simple Agent template flow
+## 运行 Simple Agent 模板 flow
 
-1. In Langflow, click **New Flow**, and then select the **Simple Agent** template.
+1. 在 Langflow 中点击 **New Flow**,然后选择 **Simple Agent** 模板。
 
-![Simple Agent template](/img/quickstart-simple-agent-flow.png)
+![Simple Agent 模板](/img/quickstart-simple-agent-flow.png)
 
-The **Simple Agent** template consists of an [**Agent** component](/agents) connected to [**Chat Input** and **Chat Output** components](/chat-input-and-output), a [**Calculator** component](/calculator), and a [**URL** component](/url). When you run this flow, you submit a query to the agent through the **Chat Input** component, the agent uses the **Calculator** and **URL** tools to generate a response, and then returns the response through the **Chat Output** component.
+**Simple Agent** 模板由一个 [**Agent** 组件](/agents)连接到 [**Chat Input** 和 **Chat Output** 组件](/chat-input-and-output)、一个 [**Calculator** 组件](/calculator)和一个 [**URL** 组件](/url)组成。运行此 flow 时,你通过 **Chat Input** 组件向代理提交查询,代理使用 **Calculator** 和 **URL** 工具生成响应,然后通过 **Chat Output** 组件返回结果。
 
-Many components can be tools for agents, including [Model Context Protocol (MCP) servers](/mcp-server). The agent decides which tools to call based on the context of a given query.
+许多组件都可以作为代理的工具,包括[模型上下文协议(MCP)服务器](/mcp-server)。代理会根据给定查询的上下文决定调用哪些工具。
 
-2. In the **Agent** component, click **Setup Provider** to select your language model provider.
+2. 在 **Agent** 组件中点击 **Setup Provider**,选择你的语言模型提供商。
    <PartialGlobalModelProviders />
-3. In the **Agent** component, select your configured model from the **Language Model** dropdown.
+3. 在 **Agent** 组件中,从 **Language Model** 下拉框选择你配置的模型。
 
     <details>
-    <summary>Access more models and providers</summary>
+    <summary>访问更多模型和提供商</summary>
 
-    There are two ways to access more models and providers:
+    有两种方式可以访问更多模型和提供商:
 
-    * Edit Langflow's global <Icon name="BrainCog" aria-hidden="true" /> **Models** configuration. These providers and models are part of Langflow's core functionality. Use the **Ollama** provider to connect to any model hosted on a local or remote Ollama instance.
-    * Connect any [additional language model component](/components-models#additional-language-models) to the **Agent** component's **Language Model** port.
+    * 编辑 Langflow 全局的 <Icon name="BrainCog" aria-hidden="true" /> **Models** 配置。这些提供商和模型属于 Langflow 核心功能。使用 **Ollama** 提供商可以连接本地或远程 Ollama 实例上托管的任意模型。
+    * 将任意[附加语言模型组件](/components-models#additional-language-models)连接到 **Agent** 组件的 **Language Model** 端口。
 
     </details>
 
-4. To run the flow, click <Icon name="Play" aria-hidden="true"/> **Playground**.
+4. 点击 <Icon name="Play" aria-hidden="true"/> **Playground** 运行 flow。
 
-5. To test the **Calculator** tool, ask the agent a simple math question, such as `I want to add 4 and 4.`
-To help you test and evaluate your flows, the **Playground** shows the agent's reasoning process as it analyzes the prompt, selects a tool, and then uses the tool to generate a response.
-In this case, a math question causes the agent to select the **Calculator** tool and use an action like `evaluate_expression`.
+5. 要测试 **Calculator** 工具,向代理提一个简单的数学问题,例如 `I want to add 4 and 4.`
+   为了帮助你测试和评估 flow,**Playground** 会展示代理的分析提示、选择工具、再用工具生成响应的完整推理过程。
+   在这个例子中,数学问题会让代理选择 **Calculator** 工具,并执行类似 `evaluate_expression` 的动作。
 
-![Playground with Agent tool](/img/quickstart-simple-agent-playground.png)
+![Playground 中的代理工具](/img/quickstart-simple-agent-playground.png)
 
-6. To test the **URL** tool, ask the agent about current events.
-For this request, the agent selects the **URL** tool's `fetch_content` action, and then returns a summary of current news headlines.
+6. 要测试 **URL** 工具,向代理询问时事新闻。
+   对于这类请求,代理会选择 **URL** 工具的 `fetch_content` 动作,然后返回当前新闻标题的摘要。
 
-7. When you are done testing the flow, click <Icon name="X" aria-hidden="true"/>**Close**.
+7. 测试完成后,点击 <Icon name="X" aria-hidden="true"/> **Close**。
 
-:::tip Next steps
-Now that you've run your first flow, try these next steps:
+:::tip 下一步
+你已经运行了第一个 flow,接下来可以:
 
-- Edit your **Simple Agent** flow by attaching different tools or adding more [components](/concepts-components) to the flow.
-- [Build your own flows](/concepts-flows) from scratch or by modifying other template flows.
-- Integrate flows into your applications, as explained in [Run your flows from external applications](#run-your-flows-from-external-applications).
+- 编辑你的 **Simple Agent** flow,为其挂接不同的工具或添加更多[组件](/concepts-components)。
+- 从零开始[构建自己的 flow](/concepts-flows),或者改造其他模板 flow。
+- 将 flow 集成到你的应用中,参见[从外部应用运行你的 flow](#run-your-flows-from-external-applications)。
 :::
 
-## Run your flows from external applications
+## 从外部应用运行你的 flow
 
-Langflow is an IDE, but it's also a runtime you can call through the [Langflow API](/api-reference-api-examples) with Python, JavaScript, or HTTP.
+Langflow 是一个 IDE,同时也是一个运行时,你可以通过 [Langflow API](/api-reference-api-examples) 用 Python、JavaScript 或 HTTP 调用它。
 
-When you start Langflow locally, you can send requests to the local Langflow server.
-For production applications, you need to [deploy a stable Langflow instance](/deployment-overview) to handle API calls.
+本地启动 Langflow 后,你可以向本地 Langflow 服务器发送请求。
+对于生产应用,你需要[部署一个稳定的 Langflow 实例](/deployment-overview)来处理 API 调用。
 
-For example, you can use the `/run` endpoint to run a flow and get the result.
+例如,你可以使用 `/run` 端点运行 flow 并获取结果。
 
-Langflow provides code snippets to help you get started with the Langflow API.
+Langflow 提供了代码片段,帮助你快速上手 Langflow API。
 
-1. When editing a flow, click **Share**, and then click **API access**.
+1. 编辑 flow 时,点击 **Share**,然后点击 **API access**。
 
-    The default code in the API access pane constructs a request with the Langflow server `url`, `headers`, and a `payload` of request data.
-    The code snippets automatically include the `LANGFLOW_SERVER_ADDRESS` and `FLOW_ID` values for the flow, and a script to include your `LANGFLOW_API_KEY` if you've set it as an environment variable in your terminal session.
-    Replace these values if you're using the code for a different server or flow.
-    The default Langflow server address is `http://localhost:7860`.
+    API access 面板中的默认代码构建了一个包含 Langflow 服务器 `url`、`headers` 和请求数据 `payload` 的请求。
+    代码片段会自动带上该 flow 的 `LANGFLOW_SERVER_ADDRESS` 和 `FLOW_ID` 值,并包含一段脚本:如果你已在终端会话中设置了 `LANGFLOW_API_KEY` 环境变量,脚本会自动附带该 key。
+    如果你要把代码用于其他服务器或 flow,请替换这些值。
+    Langflow 服务器默认地址为 `http://localhost:7860`。
 
     <Tabs>
     <TabItem value="Python" label="Python" default>
@@ -196,14 +200,14 @@ Langflow provides code snippets to help you get started with the Langflow API.
     </TabItem>
     </Tabs>
 
-2. Copy the snippet, paste it in a script file, and then run the script to send the request.
-If you are using the curl snippet, you can run the command directly in your terminal.
+2. 复制代码片段,粘贴到脚本文件中并运行,即可发送请求。
+   如果用的是 curl 片段,直接在终端运行该命令即可。
 
-If the request is successful, the response includes many details about the flow run, including the session ID, inputs, outputs, components, durations, and more.
-The following is an example of a response from running the **Simple Agent** template flow:
+请求成功时,响应会包含这次 flow 运行的众多细节,包括会话 ID、输入、输出、组件、耗时等。
+以下是运行 **Simple Agent** 模板 flow 的响应示例:
 
 <details>
-<summary>Result</summary>
+<summary>运行结果</summary>
 
 ```json
 {
@@ -372,14 +376,14 @@ The following is an example of a response from running the **Simple Agent** temp
 
 </details>
 
-In a production application, you probably want to select parts of this response to return to the user, store in logs, and so on. The next steps demonstrate how you can extract data from a Langflow API response to use in your application.
+在生产应用中,你通常只需要选取响应中的一部分返回给用户、写入日志等。下面的步骤演示如何从 Langflow API 响应中提取数据供应用使用。
 
-### Extract data from the response
+### 从响应中提取数据
 
-The following example builds on the API pane's example code to create a question-and-answer chat in your terminal that stores the agent's previous answer.
+下面的例子基于 API 面板的示例代码,在终端里实现一个问答聊天,并保存代理上一次的回答。
 
-1. Incorporate your **Simple Agent** flow's `/run` snippet into the following script.
-This script runs a question-and-answer chat in your terminal and stores the agent's previous answer so you can compare them.
+1. 把你的 **Simple Agent** flow 的 `/run` 代码片段合入以下脚本。
+   该脚本在终端运行问答聊天,并保存代理上一次的回答以便对比。
 
     <Tabs>
     <TabItem value="Python" label="Python" default>
@@ -529,26 +533,26 @@ This script runs a question-and-answer chat in your terminal and stores the agen
     </TabItem>
     </Tabs>
 
-2. To view the agent's previous answer, type `compare`. To close the terminal chat, type `exit`.
+2. 输入 `compare` 可查看代理上一次的回答;输入 `exit` 关闭终端聊天。
 
-### Use tweaks to apply temporary overrides to a flow run
+### 使用 tweaks 对单次 flow 运行应用临时覆盖
 
-You can include tweaks with your requests to temporarily modify flow parameters.
-Tweaks are added to the API request, and temporarily change component parameters within your flow.
-Tweaks override the flow's components' settings for a single run only.
-They don't modify the underlying flow configuration or persist between runs.
+你可以在请求中附带 tweaks,临时修改 flow 参数。
+tweaks 会附加到 API 请求中,临时改变 flow 内组件的参数。
+tweaks 仅在单次运行中覆盖组件设置。
+它们不会修改 flow 的底层配置,也不会在多次运行之间持久化。
 
-Tweaks are added to the `/run` endpoint's `payload`.
-To assist with formatting, [expose the fields you want to override](/concepts-publish#input-schema) before copying the code snippet.
+tweaks 附加在 `/run` 端点的 `payload` 中。
+为了方便格式化,建议在复制代码片段前先[暴露想要覆盖的字段](/concepts-publish#input-schema)。
 
-1. On the canvas, select the component whose parameter you want to override.
-2. Click **Parameters**, and then click **API** on the field you want to include in the snippet.
-3. Click **Share** > **API access**.
-   Enabling **API** on a field doesn't permanently change the parameter value. It only adds the field to the sample code snippets.
-4. For example, to change the agent's LLM model from OpenAI to Anthropic and include your Anthropic API key with the request, select the **Agent** component, open **Parameters**, and enable **API** on the **Language Model** field.
+1. 在画布上选中要覆盖参数的组件。
+2. 点击 **Parameters**,然后在想要纳入代码片段的字段上点击 **API**。
+3. 点击 **Share** > **API access**。
+   在字段上启用 **API** 不会永久改变参数值,只是把该字段加进示例代码片段。
+4. 例如,要把代理的 LLM 从 OpenAI 切换到 Anthropic,并在请求中附带 Anthropic API key,可以选中 **Agent** 组件,打开 **Parameters**,然后在 **Language Model** 字段上启用 **API**。
 
-Langflow updates the `tweaks` object in the code snippets based on your exposed parameters, and includes default values to guide you.
-Use the updated code snippets in your script to run your flow with your overrides.
+Langflow 会根据你暴露的参数更新代码片段中的 `tweaks` 对象,并附带默认值供参考。
+在脚本中使用更新后的代码片段,即可带着你的覆盖设置运行 flow。
 
 ```json
 payload = {
@@ -565,9 +569,9 @@ payload = {
 }
 ```
 
-## Next steps
+## 下一步
 
-* [Trigger flows with the Langflow API](/concepts-publish)
-* [Use Langflow as a Model Context Protocol (MCP) server](/mcp-server)
-* [Containerize a Langflow application](/develop-application)
-* [File management](/concepts-file-management)
+* [用 Langflow API 触发 flow](/concepts-publish)
+* [将 Langflow 用作模型上下文协议(MCP)服务器](/mcp-server)
+* [容器化 Langflow 应用](/develop-application)
+* [文件管理](/concepts-file-management)

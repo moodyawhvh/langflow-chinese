@@ -1,5 +1,5 @@
 ---
-title: What is Langflow?
+title: Langflow 是什么?
 slug: /
 ---
 
@@ -7,111 +7,113 @@ import Cards from "@site/src/components/Cards";
 import Card from "@site/src/components/Card";
 import Icon from "@site/src/components/icon";
 
-Langflow is an open-source, Python-based, customizable framework for building AI applications.
-It supports important AI functionality like agents and the Model Context Protocol (MCP), and it doesn't require you to use specific large language models (LLMs) or vector stores.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
 
-The visual editor simplifies prototyping of application workflows, enabling developers to quickly turn their ideas into powerful, real-world solutions.
+Langflow 是一个开源、基于 Python、可深度定制的 AI 应用构建框架。
+它支持代理(Agent)、模型上下文协议(MCP)等关键 AI 能力,并且不强制你使用特定的大语言模型(LLM)或向量数据库。
 
-:::tip Try it
-Build and run your first flow in minutes: [Install Langflow](/get-started-installation), and then try the [Quickstart](/get-started-quickstart).
+可视化编辑器简化了应用工作流的原型设计,让开发者能快速把想法变成强大且可落地的解决方案。
+
+:::tip 试试看
+几分钟内构建并运行你的第一个 flow:先[安装 Langflow](/get-started-installation),然后试试[快速入门](/get-started-quickstart)。
 :::
 
 <Cards cols={3}>
-  <Card icon={<Icon name="Rocket" size={20} />} title="Quickstart" href="/get-started-quickstart">
-    Build and run your first flow in minutes.
+  <Card icon={<Icon name="Rocket" size={20} />} title="快速入门" href="/get-started-quickstart">
+    几分钟内构建并运行你的第一个 flow。
   </Card>
-  <Card icon={<Icon name="Blocks" size={20} />} title="Components" href="/concepts-components">
-    Explore all available components and integrations.
+  <Card icon={<Icon name="Blocks" size={20} />} title="组件" href="/concepts-components">
+    浏览所有可用组件与集成。
   </Card>
-  <Card icon={<Icon name="Cloud" size={20} />} title="Deploy" href="/deployment-overview">
-    Deploy Langflow to production environments.
+  <Card icon={<Icon name="Cloud" size={20} />} title="部署" href="/deployment-overview">
+    将 Langflow 部署到生产环境。
   </Card>
 </Cards>
 
-## Application development and prototyping
+## 应用开发与原型设计
 
-Langflow can help you develop a wide variety of AI applications, such as chatbots, document analysis systems, content generators, and agentic applications.
+Langflow 可以帮你开发各类 AI 应用,例如聊天机器人、文档分析系统、内容生成器和智能体应用。
 
-Langflow includes several pre-built templates that are ready to use or customize to your needs.
+Langflow 内置多个预构建模板,开箱即用,也可按需定制。
 
-### Create flows in minutes
+### 几分钟创建 Flow
 
-The primary purpose of Langflow is to create and serve flows, which are functional representations of application workflows.
+Langflow 的核心用途是创建和提供服务化的 flow,即应用工作流的功能化表达。
 
-To [build a flow](/concepts-flows), you connect and configure component nodes. Each component is a single step in the workflow.
+[构建 flow](/concepts-flows)时,你需要连接并配置组件节点。每个组件就是工作流中的一个步骤。
 
-With Langflow's [visual editor](/concepts-overview), you can drag and drop components to quickly build and test a functional AI application workflow.
-For example, you could build a chatbot flow for an e-commerce store that uses an LLM and a product data store to allow customers to ask questions about the store's products.
+借助 Langflow 的[可视化编辑器](/concepts-overview),你可以拖拽组件,快速搭建并测试可运行的 AI 应用工作流。
+例如,你可以为电商网站构建一个聊天机器人 flow,利用 LLM 和商品数据存储,让顾客直接询问店铺商品的相关问题。
 
-![Basic Prompting flow in Langflow](/img/workspace-basic-prompting.png)
+![Langflow 中的基础 Prompting flow](/img/workspace-basic-prompting.png)
 
-### Test flows in real-time
+### 实时测试 Flow
 
-You can use the [**Playground**](/concepts-playground) to test flows without having to build your entire application stack.
-You can interact with your flows and get real-time feedback about flow logic and response generation.
+你可以使用 [**Playground**](/concepts-playground) 测试 flow,而无需搭建完整的应用栈。
+你可以与 flow 交互,实时获得关于 flow 逻辑和响应生成的反馈。
 
-You can also run individual components to test dependencies in isolation.
+你还可以单独运行某个组件,以隔离方式测试依赖项。
 
-### Run and serve flows
+### 运行与服务 Flow
 
-You can use your flows as prototypes for more formal application development, or you can use the Langflow API to embed your flows into your application code.
+你可以把 flow 当作更正式应用开发的原型,也可以通过 Langflow API 将 flow 嵌入你的应用代码。
 
-For more extensive development, you can build Langflow as a dependency or deploy a Langflow server to serve flows over the public internet.
+如需更深入的开发,你可以把 Langflow 作为依赖构建,或部署一个 Langflow 服务器,通过公共互联网对外提供 flow 服务。
 
 <Cards cols={2}>
-  <Card icon={<Icon name="Zap" size={20} />} title="Trigger flows with the API" href="/concepts-publish">
-    Use the Langflow API to run flows from your application code.
+  <Card icon={<Icon name="Zap" size={20} />} title="用 API 触发 Flow" href="/concepts-publish">
+    使用 Langflow API 从应用代码运行 flow。
   </Card>
-  <Card icon={<Icon name="Container" size={20} />} title="Containerize your app" href="/develop-application">
-    Build and deploy Langflow as a containerized application.
+  <Card icon={<Icon name="Container" size={20} />} title="容器化你的应用" href="/develop-application">
+    将 Langflow 构建并部署为容器化应用。
   </Card>
 </Cards>
 
-## Endless modifications and integrations
+## 无限的修改与集成
 
-Langflow provides [components](/concepts-components) that support many services, tools, and functionality that are required for AI applications.
+Langflow 提供的[组件](/concepts-components)覆盖 AI 应用所需的众多服务、工具与功能。
 
-Some components are generalized, such as inputs, outputs, and data stores.
-Others are specialized, such as agents, language models, and embedding providers.
+有些组件是通用的,例如输入、输出和数据存储。
+有些则是专用的,例如代理、语言模型和嵌入模型提供商。
 
-All components offer parameters that you can set to fixed or variable values. You can also use tweaks to temporarily override flow settings at runtime.
+所有组件都提供参数,你可以设为固定值或变量值。你还可以使用 tweaks 在运行时临时覆盖 flow 设置。
 
-### Agent and MCP support
+### 代理与 MCP 支持
 
 <Cards cols={2}>
-  <Card icon={<Icon name="Bot" size={20} />} title="Langflow Agents" href="/agents">
-    Build and configure AI agents with Langflow.
+  <Card icon={<Icon name="Bot" size={20} />} title="Langflow 代理" href="/agents">
+    使用 Langflow 构建和配置 AI 代理。
   </Card>
-  <Card icon={<Icon name="Wrench" size={20} />} title="Agent tools" href="/agents-tools">
-    Use components and flows as agent tools.
+  <Card icon={<Icon name="Wrench" size={20} />} title="代理工具" href="/agents-tools">
+    将组件和 flow 用作代理工具。
   </Card>
-  <Card icon={<Icon name="Plug" size={20} />} title="MCP server" href="/mcp-server">
-    Expose Langflow as an MCP server.
+  <Card icon={<Icon name="Plug" size={20} />} title="MCP 服务器" href="/mcp-server">
+    将 Langflow 作为 MCP 服务器对外提供。
   </Card>
-  <Card icon={<Icon name="Cable" size={20} />} title="MCP client" href="/mcp-client">
-    Connect Langflow to external MCP servers.
+  <Card icon={<Icon name="Cable" size={20} />} title="MCP 客户端" href="/mcp-client">
+    将 Langflow 连接到外部 MCP 服务器。
   </Card>
 </Cards>
 
-### Extensibility
+### 可扩展性
 
-In addition to the core components, Langflow supports custom components.
+除核心组件外,Langflow 还支持自定义组件。
 
-You can use custom components developed by others, and you can develop your own custom components for personal use or to share with other Langflow users.
+你可以使用他人开发的自定义组件,也可以开发自己的自定义组件供个人使用,或分享给其他 Langflow 用户。
 
 <Cards cols={3}>
-  <Card icon={<Icon name="GitPullRequest" size={20} />} title="Contribute" href="/contributing-how-to-contribute">
-    Help build Langflow.
+  <Card icon={<Icon name="GitPullRequest" size={20} />} title="参与贡献" href="/contributing-how-to-contribute">
+    一起建设 Langflow。
   </Card>
-  <Card icon={<Icon name="Code" size={20} />} title="Custom components" href="/components-custom-components">
-    Create your own Python components.
+  <Card icon={<Icon name="Code" size={20} />} title="自定义组件" href="/components-custom-components">
+    创建你自己的 Python 组件。
   </Card>
-  <Card icon={<Icon name="HelpCircle" size={20} />} title="Get help" href="/contributing-github-issues">
-    Request enhancements and report issues.
+  <Card icon={<Icon name="HelpCircle" size={20} />} title="获取帮助" href="/contributing-github-issues">
+    提交功能请求和问题报告。
   </Card>
 </Cards>
 
-## Next steps
+## 下一步
 
-* [Install Langflow](/get-started-installation)
-* [Quickstart](/get-started-quickstart)
+* [安装 Langflow](/get-started-installation)
+* [快速入门](/get-started-quickstart)
