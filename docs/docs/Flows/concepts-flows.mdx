@@ -1,157 +1,159 @@
 ---
-title: Build flows
+title: 构建 Flow
 slug: /concepts-flows
 ---
 
 import Icon from "@site/src/components/icon";
 
-A _flow_ is a functional representation of an application workflow.
-Flows receive input, process it, and produce output.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
 
-Flows consist of _components_ that represent individual steps in your application's workflow.
+_flow_(流程)是应用工作流的功能化表达。
+flow 接收输入、处理数据、产出结果。
 
-![Basic Prompting flow in the workspace](/img/workspace-basic-prompting.png)
+flow 由 _components_(组件)构成,每个组件代表应用工作流中的一个步骤。
 
-Langflow flows are fully serializable and can be saved and loaded from the file system where Langflow is installed.
+![工作区中的基础 Prompting flow](/img/workspace-basic-prompting.png)
+
+Langflow 的 flow 完全可序列化,可以保存到 Langflow 安装所在的文件系统,也可以从中加载。
 
 :::tip
-To try building and running a flow in a few minutes, see the [Langflow quickstart](/get-started-quickstart).
+想在几分钟内试着构建并运行一个 flow,请参见 [Langflow 快速入门](/get-started-quickstart)。
 :::
 
-## Create a flow
+## 创建 flow
 
-From the [**Projects** page](#projects), there are four ways to create a flow:
+在 [**Projects** 页面](#projects)中,有四种创建 flow 的方式:
 
-* **Create a blank flow**: Select a project, click **New Flow**, and then click **Blank Flow**.
+* **创建空白 flow**:选择一个项目,点击 **New Flow**,然后点击 **Blank Flow**。
 
-* **Create a flow from a template**: Select a project, click **New Flow**, and then click the template that you want to use.
+* **从模板创建 flow**:选择一个项目,点击 **New Flow**,然后点击想用的模板。
 
     <details>
-    <summary>What are templates?</summary>
+    <summary>什么是模板?</summary>
 
-    Templates are pre-built flows that you can use as a starting point for your own flow.
-    They range from basic flows with a few components to complex flows with many components and sub-flows.
+    模板是预构建的 flow,可以作为你自己 flow 的起点。
+    从只有几个组件的基础 flow,到包含大量组件和子 flow 的复杂流程都有。
 
-    For example, the **Basic Prompting** template demonstrates a small flow that passes both chat input and pre-defined instructions (as a prompt) to an LLM.
-    In contrast, the **Vector Store RAG** template consists of two sub-flows that demonstrate how to create a Retrieval Augmented Generation (RAG) chatbot. One sub-flow populates the vector store with contextually relevant data and embeddings, and the other sub-flow queries the vector store for similar data to answer user questions.
+    例如,**Basic Prompting** 模板演示了一个小型 flow:把聊天输入和预定义指令(作为提示词)一起传给 LLM。
+    而 **Vector Store RAG** 模板由两个子 flow 组成,演示如何构建检索增强生成(RAG)聊天机器人:一个子 flow 向向量库写入上下文相关数据和嵌入,另一个子 flow 从向量库查询相似数据来回答用户问题。
 
-    You can also [contribute templates](/contributing-templates) to the Langflow codebase.
+    你也可以向 Langflow 代码库[贡献模板](/contributing-templates)。
 
     </details>
 
-* **Duplicate an existing flow**: Locate the flow you want to copy, click <Icon name="Ellipsis" aria-hidden="true" /> **More**, and then select **Duplicate**.
+* **复制已有 flow**:找到要复制的 flow,点击 <Icon name="Ellipsis" aria-hidden="true" /> **More**,然后选择 **Duplicate**。
 
-* **Import a flow**: See [Import and export flows](/concepts-flows-import).
+* **导入 flow**:参见[导入与导出 flow](/concepts-flows-import)。
 
-You can also create a flow with the [Langflow API](/api-flows), but the Langflow team recommends using the [visual editor](/concepts-overview) until you are familiar with flow creation.
+你也可以通过 [Langflow API](/api-flows) 创建 flow,但在熟悉 flow 创建之前,Langflow 团队建议使用[可视化编辑器](/concepts-overview)。
 
-### Add components
+### 添加组件
 
-Flows consist of [components](/concepts-components), which are nodes that you configure and connect in the [workspace](/concepts-overview#workspace).
-Each component performs a specific task, like serving an AI model or connecting a data source.
+flow 由[组件](/concepts-components)组成,组件是你在[工作区](/concepts-overview#workspace)中配置并连接的节点。
+每个组件执行一项具体任务,例如提供 AI 模型服务或连接数据源。
 
-Drag and drop components from the <Icon name="Component" aria-hidden="true" /> **Core components** and <Icon name="Blocks" aria-hidden="true" /> **Bundles** menus to add them to your flow.
-Then, configure the component settings and connect the components together.
+从 <Icon name="Component" aria-hidden="true" /> **Core components** 和 <Icon name="Blocks" aria-hidden="true" /> **Bundles** 菜单中拖拽组件,加入你的 flow。
+然后配置组件设置,并把组件相互连接。
 
-![Chat Input and Output connected to a Language Model component](/img/connect-component.png)
+![Chat Input 和 Output 连接到一个 Language Model 组件](/img/connect-component.png)
 
-Each component has configuration settings and options. Some of these are common to all components, and some are unique to specific components.
+每个组件都有自己的配置项和选项。其中一些是所有组件共有的,一些则是特定组件独有的。
 
-To form a cohesive flow, you connect components by _edges_ or _ports_, which have a specific data type they receive or send.
-For example, message ports send text strings between components.
+要构成一个完整的 flow,你需要通过 _连线(edge)_ 或 _端口(port)_ 连接组件,它们接收或发送特定的数据类型。
+例如,消息端口在组件之间传递文本字符串。
 
-For more information about component configuration, including port types and underlying component code, see [Components overview](/concepts-components).
+关于组件配置的更多信息(包括端口类型和组件底层代码),参见[组件概览](/concepts-components)。
 
-### Run a flow
+### 运行 flow
 
-After you build a prototype flow, you can test it in the [**Playground**](/concepts-playground).
-When you're ready to use Langflow for application development, learn how to [trigger flows with the Langflow API](/concepts-publish), explore more advanced configuration options like [custom dependencies](/install-custom-dependencies), and, eventually, [containerize your Langflow application](/develop-application).
+构建好原型 flow 后,可以先在 [**Playground**](/concepts-playground) 中测试。
+准备用 Langflow 做应用开发时,学习如何[用 Langflow API 触发 flow](/concepts-publish),探索[自定义依赖](/install-custom-dependencies)等更高级的配置选项,最终[容器化你的 Langflow 应用](/develop-application)。
 
-When you're ready to go to production or deploy a Langflow MCP server for access over the public internet, see [Langflow deployment overview](/deployment-overview).
+准备好上生产环境、或部署可通过公网访问的 Langflow MCP 服务器时,参见 [Langflow 部署概览](/deployment-overview)。
 
-#### Flow graphs
+#### Flow 图
 
-When a flow runs, Langflow builds a Directed Acyclic Graph (DAG) object from the nodes (components) and edges (connections), and the nodes are sorted to determine the order of execution.
+flow 运行时,Langflow 会根据节点(组件)和连线(连接)构建一个有向无环图(DAG)对象,并对节点排序以确定执行顺序。
 
-The graph build calls each component's `def_build` function to validate and prepare the nodes.
-This graph is then processed in dependency order.
-Each node is built and executed sequentially, with results from each built node being passed to nodes that are dependent on that node's results.
+图构建过程会调用每个组件的 `def_build` 函数来验证并准备节点。
+随后按依赖顺序处理该图。
+每个节点依次构建和执行,已构建节点的结果会传给依赖该结果的下游节点。
 
-## Manage flows in projects {#projects}
+## 在项目中管理 flow {#projects}
 
-The **Projects** page is where you arrive when you launch Langflow.
-From here, you can manage flows and your projects' [MCP servers](/mcp-server).
+启动 Langflow 后首先到达的就是 **Projects** 页面。
+在这里可以管理 flow 以及各项目的 [MCP 服务器](/mcp-server)。
 
-Langflow projects are like folders that you can use to organize related flows.
-The default project is **Starter Project**, and your flows are stored here unless you create another project.
-To create a project, click <Icon name="Plus" aria-hidden="true"/> **Create new project**.
+Langflow 项目类似于文件夹,用于组织相关的 flow。
+默认项目是 **Starter Project**,除非你另建项目,否则 flow 都存放在这里。
+点击 <Icon name="Plus" aria-hidden="true"/> **Create new project** 即可创建项目。
 
-![Projects page with multiple flows in a project](/img/my-projects.png)
+![Projects 页面中一个项目内的多个 flow](/img/my-projects.png)
 
 :::tip
-To get back to the **Projects** page after editing a flow, click the project name or Langflow icon in the Langflow header.
+编辑 flow 后想回到 **Projects** 页面,点击 Langflow 顶栏中的项目名称或 Langflow 图标即可。
 :::
 
-### Edit flow details
+### 编辑 flow 详情
 
-1. On the **Projects** page, locate the flow you want to edit.
-2. Click <Icon name="Ellipsis" aria-hidden="true" /> **More**, and then select **Edit details**.
-3. Edit the **Name** and **Description**, and then click **Save**.
+1. 在 **Projects** 页面找到要编辑的 flow。
+2. 点击 <Icon name="Ellipsis" aria-hidden="true" /> **More**,然后选择 **Edit details**。
+3. 修改 **Name** 和 **Description**,然后点击 **Save**。
 
-### Save and restore flow versions
+### 保存与恢复 flow 版本
 
-You can save versions of a flow from the <Icon name="History" aria-hidden="true" /> **Version History** menu in the flow editor.
+你可以在 flow 编辑器的 <Icon name="History" aria-hidden="true" /> **Version History** 菜单中保存 flow 版本。
 
-1. Open the flow that you want to version.
-2. In the flow editor sidebar, click <Icon name="History" aria-hidden="true" /> **Version History**.
-3. In **Current**, click **Save** to capture the current state of the flow as a saved version.
-4. Select a previously saved version to preview the flow in read-only mode.
-5. To replace the current draft with the selected version, click **Restore**.
+1. 打开想要做版本的 flow。
+2. 在 flow 编辑器侧边栏,点击 <Icon name="History" aria-hidden="true" /> **Version History**。
+3. 在 **Current** 下点击 **Save**,把 flow 当前状态保存为一个版本。
+4. 选择一个已保存的版本,以只读模式预览该 flow。
+5. 点击 **Restore**,用所选版本替换当前草稿。
 
-From a saved version's <Icon name="EllipsesVertical" aria-hidden="true" /> menu, you can also **Export** or **Delete** that version.
+在已保存版本的 <Icon name="EllipsesVertical" aria-hidden="true" /> 菜单中,你还可以 **Export** 或 **Delete** 该版本。
 
-Saved flow versions are stored in the database configured for your Langflow deployment.
+保存的 flow 版本存储在你为 Langflow 部署配置的数据库中。
 
-When restoring a saved version, if **Save current draft before restoring** is enabled, then Langflow creates a backup of your current work before the selected version replaces it.
+恢复已保存版本时,如果 **Save current draft before restoring** 处于启用状态,Langflow 会在所选版本覆盖当前工作前先做一份备份。
 
-[Flow auto-save](/environment-variables#visual-editor-and-playground-behavior) and flow versions serve different purposes.
-Auto-save keeps your current flow draft up to date in the background, but it doesn't create version entries.
-A saved _version_ is an explicit snapshot that you create when you want a restore point.
+[flow 自动保存](/environment-variables#visual-editor-and-playground-behavior)与 flow 版本的用途不同。
+自动保存在后台保持当前 flow 草稿最新,但不会创建版本条目。
+保存的_版本_是你显式创建的快照,用作还原点。
 
-When previewing a saved version, Langflow temporarily pauses auto-save so the preview doesn't overwrite your current draft.
+预览已保存版本时,Langflow 会暂时暂停自动保存,避免预览覆盖你的当前草稿。
 
-### Lock a flow
+### 锁定 flow
 
-To prevent changes to a flow, you can lock it:
+要防止 flow 被修改,可以将其锁定:
 
-1. On the **Projects** page, locate the flow you want to lock.
-2. Click <Icon name="Ellipsis" aria-hidden="true" /> **More**, and then select **Edit details**.
-3. Enable **Lock Flow**, and then click **Save**.
+1. 在 **Projects** 页面找到要锁定的 flow。
+2. 点击 <Icon name="Ellipsis" aria-hidden="true" /> **More**,然后选择 **Edit details**。
+3. 启用 **Lock Flow**,然后点击 **Save**。
 
-Repeat these steps to unlock the flow by disabling **Lock Flow**.
+重复上述步骤并关闭 **Lock Flow** 即可解锁。
 
-When editing a flow, the **Lock Status** indicates whether the flow is <Icon name="Lock" aria-hidden="true" /> **Locked** or <Icon name="LockOpen" aria-hidden="true" /> **Unlocked**.
-You cannot change the lock status while editing the flow.
+编辑 flow 时,**Lock Status** 显示 flow 当前是 <Icon name="Lock" aria-hidden="true" /> **Locked** 还是 <Icon name="LockOpen" aria-hidden="true" /> **Unlocked**。
+编辑 flow 的过程中无法更改锁定状态。
 
-### Move a flow
+### 移动 flow
 
-To move a flow from one project to another, do the following:
+把 flow 从一个项目移动到另一个项目:
 
-1. On the **Projects** page, locate the flow you want to move.
-2. Click and drag the flow from the list of flows to the target project name in the list of projects.
+1. 在 **Projects** 页面找到要移动的 flow。
+2. 把 flow 从 flow 列表拖到项目列表中的目标项目名称上。
 
-### Delete a flow
+### 删除 flow
 
-1. On the **Projects** page, locate the flow you want to delete.
-2. Click <Icon name="Ellipsis" aria-hidden="true" /> **More**, and then select **Delete**.
+1. 在 **Projects** 页面找到要删除的 flow。
+2. 点击 <Icon name="Ellipsis" aria-hidden="true" /> **More**,然后选择 **Delete**。
 
-## Flow storage and logs
+## Flow 存储与日志
 
-By default, flows and flow execution data are stored in the Langflow database, and flow logs are stored with other Langflow logs in the Langflow config directory.
-For more information, see [Memory management options](/memory) and [Logging](/logging).
+默认情况下,flow 和 flow 执行数据存储在 Langflow 数据库中,flow 日志与其他 Langflow 日志一起存放在 Langflow 配置目录。
+更多信息参见[内存管理选项](/memory)和[日志](/logging)。
 
-## See also
+## 另请参阅
 
-* [Share and embed flows](/concepts-publish)
-* [Import and export flows](/concepts-flows-import)
-* [Langflow environment variables](/environment-variables)
+* [分享与嵌入 flow](/concepts-publish)
+* [导入与导出 flow](/concepts-flows-import)
+* [Langflow 环境变量](/environment-variables)

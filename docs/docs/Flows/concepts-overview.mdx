@@ -1,79 +1,81 @@
 ---
-title: Use the visual editor
+title: 使用可视化编辑器
 slug: /concepts-overview
 ---
 
 import Icon from "@site/src/components/icon";
 
-You use Langflow's visual editor to create, test, and share flows, which are functional representations of application workflows.
-Flows consist of components that represent individual steps in your application's workflow.
+> 🌐 本文档由 [langflow-ai/langflow](https://github.com/langflow-ai/langflow) 翻译,英文原版见原项目。
 
-Langflow's drag-and-drop interface allows you to create complex AI workflows without writing extensive code.
-You can connect different resources, including prompts, large language models (LLMs), data sources, agents, MCP servers, and other tools and integrations.
+你可以使用 Langflow 的可视化编辑器来创建、测试和分享 flow,即应用工作流的功能化表达。
+flow 由若干组件构成,每个组件代表应用工作流中的一个步骤。
+
+Langflow 的拖拽界面让你无需编写大量代码就能创建复杂的 AI 工作流。
+你可以连接不同的资源,包括提示词、大语言模型(LLM)、数据源、代理、MCP 服务器,以及其他工具与集成。
 
 :::tip
-To try building and running a flow in a few minutes, see the [Langflow quickstart](/get-started-quickstart).
+想在几分钟内试着构建并运行一个 flow,请参见 [Langflow 快速入门](/get-started-quickstart)。
 :::
 
-## Workspace
+## 工作区
 
-When building a [flow](/concepts-flows), you primarily interact with the workspace.
-This is where you add [components](/concepts-components), configure them, and attach them together.
+构建 [flow](/concepts-flows) 时,你主要在工作区中操作。
+在这里添加[组件](/concepts-components)、配置组件并把它们连接起来。
 
-![Empty Langflow workspace](/img/workspace.png)
+![空白的 Langflow 工作区](/img/workspace.png)
 
-From the workspace, you can also access the [**Playground**](#playground), [**Share** menu](#share-menu), and [**Logs**](/logging).
+在工作区中,你还可以访问 [**Playground**](#playground)、[**Share** 菜单](#share-menu)和 [**Logs**](/logging)。
 
-### Workspace gestures and interactions
+### 工作区手势与交互
 
-Use these shortcuts, gestures, and functionality to navigate the workspace:
+使用以下快捷方式、手势和功能在工作区中导航:
 
-- **Pan horizontally and vertically**: Click and drag an empty area of the workspace.
+- **水平/垂直平移**:点击并拖动工作区的空白区域。
 
-- **Rearrange components**: Click and drag the components anywhere on the workspace.
+- **重新排列组件**:在画布上任意拖动组件。
 
-    To change the programmatic relationship between components, you must manipulate the component _edges_ or _ports_. For more information, see [Components overview](/concepts-components).
+    要改变组件之间的程序化关系,必须操作组件的_连线(edge)_或_端口(port)_。更多信息参见[组件概览](/concepts-components)。
 
-    To enable guide lines, click <Icon name="CircleQuestionMark" aria-hidden="true" /> **Help**, and then toggle **Enable smart guides**.
+    要启用对齐辅助线,点击 <Icon name="CircleQuestionMark" aria-hidden="true" /> **Help**,然后开启 **Enable smart guides**。
 
-    If you can't edit any components, make sure the flow is [unlocked](/concepts-flows#lock-a-flow).
+    如果组件都无法编辑,请确认 flow 已[解锁](/concepts-flows#lock-a-flow)。
 
-- **Zoom**: Scroll on the mouse or trackpad, or click <Icon name="ChevronUp" aria-hidden="true" /> **Canvas controls** next to the zoom percentage more zoom options: **Zoom In**, **Zoom Out**, **Zoom To 100%**, and **Zoom To Fit**.
+- **缩放**:在鼠标或触控板上滚动,或点击缩放百分比旁的 <Icon name="ChevronUp" aria-hidden="true" /> **Canvas controls**,查看更多缩放选项:**Zoom In**、**Zoom Out**、**Zoom To 100%** 和 **Zoom To Fit**。
 
-- **Add notes and comments**: Click <Icon name="StickyNote" aria-hidden="true"/> **Add Note**.
+- **添加笔记和评论**:点击 <Icon name="StickyNote" aria-hidden="true"/> **Add Note**。
 
-- **Keyboard shortcuts**: To view available shortcuts, click <Icon name="CircleQuestionMark" aria-hidden="true" /> **Help**, and then select **Shortcuts**.
+- **键盘快捷键**:要查看可用快捷键,点击 <Icon name="CircleQuestionMark" aria-hidden="true" /> **Help**,然后选择 **Shortcuts**。
 
 ## Playground
 
-If your flow has a **Chat Input** component, you can use the **Playground** to run your flow, chat with your flow, view inputs and outputs, and modify the LLM's memories to tune the flow's responses in real time.
+如果你的 flow 包含 **Chat Input** 组件,就可以用 **Playground** 运行 flow、与 flow 对话、查看输入输出,并修改 LLM 的记忆来实时调优 flow 的响应。
 
-To try this for yourself, create a flow based on the **Simple Agent** template, and then click <Icon name="Play" aria-hidden="true"/> **Playground** when editing the flow in the workspace.
+想亲自试试,可以基于 **Simple Agent** 模板创建一个 flow,然后在工作区编辑 flow 时点击 <Icon name="Play" aria-hidden="true"/> **Playground**。
 
 ![Playground](/img/playground.png)
 
-If you have an **Agent** component in your flow, the **Playground** displays its tool calls and outputs so you can monitor the agent's tool use and understand the reasoning behind its responses.
+如果 flow 里有 **Agent** 组件,**Playground** 会显示它的工具调用和输出,方便你监控代理的工具使用情况,理解其响应背后的推理过程。
 
-![Playground with agent response](/img/playground-with-agent.png)
+![Playground 中的代理响应](/img/playground-with-agent.png)
 
-For more information, see [Test flows in the Playground](/concepts-playground).
+更多信息参见[在 Playground 中测试 flow](/concepts-playground)。
 
 ## Share {#share-menu}
 
-The **Share** menu provides the following options for integrating your flow into external applications:
+**Share** 菜单提供以下选项,用于把 flow 集成到外部应用:
 
-* [**API access**](/concepts-publish#api-access): Integrate your flow into your applications with automatically-generated Python, JavaScript, and curl code snippets.
-* [**Export**](/concepts-flows-import#export-a-flow): Export your flow to your local machine as a JSON file.
-* [**MCP Server**](/mcp-server): Expose your flow as a tool for MCP-compatible clients.
-* [**Embed into site**](/concepts-publish#embedded-chat-widget): Embed your flow in HTML, React, or Angular applications.
-* [**Shareable Playground**](/concepts-playground#share-a-flows-playground): Share your **Playground** interface with another user.
+* [**API access**](/concepts-publish#api-access):使用自动生成的 Python、JavaScript 和 curl 代码片段,把 flow 集成到你的应用中。
+* [**Export**](/concepts-flows-import#export-a-flow):把 flow 导出为 JSON 文件保存到本地。
+* [**MCP Server**](/mcp-server):把你的 flow 作为工具提供给兼容 MCP 的客户端。
+* [**Embed into site**](/concepts-publish#embedded-chat-widget):把 flow 嵌入 HTML、React 或 Angular 应用。
+* [**Shareable Playground**](/concepts-playground#share-a-flows-playground):把你的 **Playground** 界面分享给其他用户。
 
-    This is specifically for sharing the **Playground** experience; it isn't for running a flow in a production application.
+    这仅用于分享 **Playground** 体验,不适用于在生产应用中运行 flow。
 
-    The **Sharable Playground** isn't available for Langflow Desktop.
+    **Shareable Playground** 在 Langflow Desktop 上不可用。
 
-## See also
+## 另请参阅
 
-* [Manage files in Langflow](/concepts-file-management)
-* [Global variables](/configuration-global-variables)
-* [API keys and authentication](/api-keys-and-authentication)
+* [在 Langflow 中管理文件](/concepts-file-management)
+* [全局变量](/configuration-global-variables)
+* [API key 与身份认证](/api-keys-and-authentication)
